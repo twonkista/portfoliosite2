@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rohith Komati — Power Electronics</title>
+<meta name="description" content="Roh — Electrical Engineering, power electronics for aerospace systems.">
+<style>
+  :root{
+    --bg: #FAFAF7;
+    --ink: #1B1B18;
+    --muted: #6B6B62;
+    --line: #E4E2DA;
+    --accent: #A85832; /* copper */
+    --mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  }
+  *{ box-sizing: border-box; }
+  html{ -webkit-font-smoothing: antialiased; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.6;
+  }
+  ::selection{ background: var(--accent); color:#fff; }
+
+  a{ color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover{ color: var(--accent); text-decoration-color: var(--accent); }
+
+  .wrap{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 96px 24px 120px;
+  }
+
+  header.intro{ margin-bottom: 64px; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  h1{
+    font-size: 34px;
+    font-weight: 400;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .role{
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 52ch;
+    margin: 0 0 10px;
+  }
+
+  .role strong{ color: var(--ink); font-weight: 500; }
+
+  .links{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 22px;
+  }
+  .links a{ margin-right: 18px; white-space: nowrap; }
+  .links a:last-child{ margin-right:0; }
+
+  section{ margin-bottom: 56px; }
+
+  h2{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 0 0 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .entry{
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+  }
+  .entry:last-child{ border-bottom: none; margin-bottom:0; padding-bottom:0; }
+
+  .entry-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .entry-title{
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .entry-title a{ text-decoration: none; border-bottom: 1px solid var(--line); }
+  .entry-title a:hover{ border-bottom-color: var(--accent); }
+
+  .entry-meta{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .entry p{
+    margin: 8px 0 10px;
+    color: var(--ink);
+    font-size: 15.5px;
+    max-width: 56ch;
+  }
+
+  .tags{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .tags span{ color: var(--muted); }
+  .tags span::after{ content: " · "; color: var(--line); }
+  .tags span:last-child::after{ content: ""; }
+
+  .status{
+    display:inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 2px 7px;
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  footer{
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 480px){
+    .wrap{ padding: 64px 20px 80px; }
+    h1{ font-size: 28px; }
+    .entry-head{ flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <p class="eyebrow">Rohith Komati · Electrical Engineering</p>
+    <h1>Rohith Komati</h1>
+    <p class="role">EE 4th Year @ UIUC. Areas of interest: Power electronics, PCBs, FPGAs, and Avionics</p>
+    <div class="links">
+      <a href="rkomati787@gmail.com">email</a>
+      <a href="https://github.com/twonkista">github</a>
+      <a href="#">linkedin</a>
+      <a href="#" download>resume</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Unemployed</div>
+        <div class="entry-meta">2026</div>
+      </div>
+      <p>Building a macropad and beating geometry dash levels</p>
+      <div class="tags"><span>LTSpice</span><span>Geometry Dash</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Test Engineering Intern — Siemens</div>
+        <div class="entry-meta">2024</div>
+      </div>
+      <p>Worked on hardware test and validation, building and debugging test procedures for production-line equipment. First real exposure to how power hardware is qualified before it ships.</p>
+      <div class="tags"><span>hardware test</span><span>validation</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title"><a href="#">Wireless Mechanical Macropad</a></div>
+        <div class="entry-meta">2026</div>
+      </div>
+      <span class="status">in progress</span>
+      <p>A BLE HID macropad built around an ESP32 on a breadboard. Power stage is a discrete TL431-based linear regulator I designed and simulated from scratch — bandgap reference, feedback divider, BJT pass transistor. Doing this to beat some demon levels in Geometry Dash</p>
+      <div class="tags"><span>ESP32</span><span>BLE HID</span><span>TLV431 LDO</span><span>LTspice</span><span>KiCad</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title"><a href="https://github.com/twonkista/FPGA-Audio-Sampler-with-Real-Time-DSP">FPGA Audio Sampler</a></div>
+        <div class="entry-meta">2025</div>
+      </div>
+      <p>An FPGA-based I2S audio sampler with real-time DSP — a broke man's Akai MPC 3000. Written in SystemVerilog, handling audio I/O and signal processing directly in hardware.</p>
+      <div class="tags"><span>SystemVerilog</span><span>I2S</span><span>DSP</span></div>
+    </div>
+  </section>
+
+  <footer>
+    Chicago IL, Buffalo Grove IL, Long Grove IL, Champaign IL, Earth atp
+  </footer>
+
+</div>
+</body>
+</html>
