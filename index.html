@@ -1,220 +1,383 @@
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rohith Komati — Power Electronics</title>
-<meta name="description" content="Roh — Electrical Engineering, power electronics for aerospace systems.">
+<meta name="description" content="Roh — Electrical Engineering, Hardware Engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #FAFAF7;
-    --ink: #1B1B18;
-    --muted: #6B6B62;
-    --line: #E4E2DA;
-    --accent: #A85832; /* copper */
-    --mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
-    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --bg: #000000;
+    --panel: #0a0a0a;
+    --ink: #e9ece6;
+    --ink-dim: #8a8f86;
+    --muted: #4d5450;
+    --line: #262a26;
+    --amber: #ff9a1f;
+    --amber-dim: #7a5220;
+    --cyan: #38d0f4;
+    --green: #5fd98a;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
+    color-scheme: dark;
   }
   *{ box-sizing: border-box; }
-  html{ -webkit-font-smoothing: antialiased; }
+  html{ -webkit-font-smoothing: antialiased; scroll-padding-top: env(safe-area-inset-top, 0px); }
   body{
     margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--serif);
-    line-height:1.6;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    line-height: 1.6;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    position: relative;
+    overflow-x: hidden;
   }
-  ::selection{ background: var(--accent); color:#fff; }
-
-  a{ color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 3px; }
-  a:hover{ color: var(--accent); text-decoration-color: var(--accent); }
-
-  .wrap{
-    max-width: 640px;
+  ::selection{ background: var(--amber); color: #000; }
+ 
+  body::before{
+    content:"";
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(56,208,244,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56,208,244,0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 90% 55% at 50% 0%, black 10%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+ 
+  a{ color: var(--ink); text-decoration: none; }
+  a:hover{ color: var(--amber); }
+ 
+  .ticker{
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    position: relative;
+    z-index: 2;
+  }
+  .ticker-track{
+    display: inline-block;
+    padding: 7px 0;
+    animation: scroll-left 32s linear infinite;
+  }
+  .ticker span{ padding: 0 22px; color: var(--ink-dim); }
+  .ticker .up{ color: var(--green); }
+  .ticker .sym{ color: var(--ink); font-weight: 500; }
+  @keyframes scroll-left{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+ 
+  .fkeys{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 24px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+    max-width: 660px;
     margin: 0 auto;
-    padding: 96px 24px 120px;
   }
-
-  header.intro{ margin-bottom: 64px; }
-
-  .eyebrow{
+  .fkeys a{
+    font-size: 10.5px;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+    display: inline-flex;
+    gap: 6px;
+  }
+  .fkeys a:hover{ border-color: var(--amber); color: var(--amber); }
+  .fkeys .fn{ color: var(--amber-dim); }
+  .fkeys a:hover .fn{ color: var(--amber); }
+ 
+  .wrap{
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 32px 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  header.intro{ margin-bottom: 44px; }
+ 
+  .id-row{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+ 
+  h1{
+    font-family: var(--sans);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+ 
+  .ric{
     font-family: var(--mono);
     font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 14px;
+    color: var(--amber);
+    border: 1px solid var(--amber-dim);
+    padding: 3px 8px;
   }
-
-  h1{
-    font-size: 34px;
-    font-weight: 400;
-    margin: 0 0 18px;
-    letter-spacing: -0.01em;
+ 
+  .cursor{
+    display:inline-block;
+    width: 8px; height: 22px;
+    background: var(--amber);
+    margin-left: 5px;
+    vertical-align: -4px;
+    animation: blink 1s step-end infinite;
   }
-
+  @keyframes blink{ 50%{ opacity: 0; } }
+ 
   .role{
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 52ch;
-    margin: 0 0 10px;
-  }
-
-  .role strong{ color: var(--ink); font-weight: 500; }
-
-  .links{
     font-family: var(--mono);
     font-size: 13px;
-    color: var(--muted);
-    margin-top: 22px;
+    color: var(--ink-dim);
+    max-width: 56ch;
+    margin: 12px 0 0;
   }
-  .links a{ margin-right: 18px; white-space: nowrap; }
-  .links a:last-child{ margin-right:0; }
-
-  section{ margin-bottom: 56px; }
-
+  .role strong{ color: var(--ink); font-weight: 500; }
+  .role::before{ content: "> "; color: var(--amber-dim); }
+ 
+  .links{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .links a{
+    padding: 5px 10px;
+    border: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .links a:hover{ border-color: var(--amber); color: var(--amber); }
+ 
+  section{ margin-bottom: 34px; }
+ 
   h2{
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11.5px;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 0 2px;
+    padding: 6px 10px;
+    background: var(--amber);
+    color: #000;
+  }
+  .col-hint{
+    font-family: var(--mono);
+    font-size: 10px;
     color: var(--muted);
-    font-weight: 500;
-    margin: 0 0 24px;
-    padding-bottom: 10px;
+    padding: 6px 2px 12px;
     border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
   }
-
+ 
   .entry{
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+    padding: 14px 2px;
     border-bottom: 1px solid var(--line);
   }
-  .entry:last-child{ border-bottom: none; margin-bottom:0; padding-bottom:0; }
-
+  .entry:last-child{ border-bottom: none; }
+ 
   .entry-head{
     display:flex;
     justify-content: space-between;
     align-items: baseline;
     gap: 16px;
     flex-wrap: wrap;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
-
+ 
   .entry-title{
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 500;
+    font-family: var(--mono);
+    color: var(--ink);
   }
-  .entry-title a{ text-decoration: none; border-bottom: 1px solid var(--line); }
-  .entry-title a:hover{ border-bottom-color: var(--accent); }
-
+  .entry-title a{ border-bottom: 1px solid var(--line); }
+  .entry-title a:hover{ border-bottom-color: var(--amber); }
+ 
   .entry-meta{
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 11px;
     color: var(--muted);
     white-space: nowrap;
   }
-
+ 
   .entry p{
-    margin: 8px 0 10px;
-    color: var(--ink);
-    font-size: 15.5px;
-    max-width: 56ch;
+    margin: 6px 0 8px;
+    color: var(--ink-dim);
+    font-size: 13px;
+    max-width: 58ch;
+    line-height: 1.65;
   }
-
+  .entry p:last-of-type{ margin-bottom: 10px; }
+ 
   .tags{
     font-family: var(--mono);
-    font-size: 11.5px;
-    color: var(--accent);
-    letter-spacing: 0.02em;
+    font-size: 10.5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
   }
-  .tags span{ color: var(--muted); }
-  .tags span::after{ content: " · "; color: var(--line); }
-  .tags span:last-child::after{ content: ""; }
-
-  .status{
-    display:inline-block;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 3px;
+  .tags span{
+    color: var(--cyan);
+    border: 1px solid var(--line);
     padding: 2px 7px;
-    margin-bottom: 10px;
+  }
+ 
+  .status{
+    display:inline-flex;
+    align-items:center;
+    gap: 5px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: #000;
+    background: var(--amber);
+    padding: 2px 7px;
+    margin-bottom: 8px;
     letter-spacing: 0.03em;
   }
-
+  .status.done{ background: var(--green); }
+ 
   footer{
-    margin-top: 80px;
-    padding-top: 24px;
+    margin-top: 56px;
+    padding-top: 18px;
     border-top: 1px solid var(--line);
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 10.5px;
     color: var(--muted);
+    letter-spacing: 0.02em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
   }
-
+  footer .loc-line::before{ content: "LOC: "; color: var(--amber-dim); }
+ 
   @media (max-width: 480px){
-    .wrap{ padding: 64px 20px 80px; }
-    h1{ font-size: 28px; }
+    .wrap{ padding: 24px 18px 80px; }
+    .fkeys{ padding: 10px 18px; }
+    h1{ font-size: 25px; }
+    .id-row{ flex-direction: column; align-items: flex-start; }
     .entry-head{ flex-direction: column; gap: 4px; }
+  }
+ 
+  @media (prefers-reduced-motion: reduce){
+    .cursor, .ticker-track{ animation: none; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header class="intro">
-    <p class="eyebrow">Rohith Komati · Electrical Engineering</p>
-    <h1>Rohith Komati</h1>
-    <p class="role">EE 4th Year @ UIUC. Areas of interest: IC Design, FPGA, Avionics/p>
-    <div class="links">
-      <a href="rkomati787@gmail.com">email</a>
-      <a href="https://github.com/twonkista">github</a>
-      <a href="https://www.linkedin.com/in/rohith-k-b24104284/">linkedin</a>
-      <a href="https://drive.google.com/file/d/1H4n6DSSqSTLIV9pxlhuSjWBAK-z6qPX9/view?usp=sharing">resume</a>
+ 
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span><span class="sym">PWR_ELEC</span> <span class="up">▲2.3</span></span>
+      <span><span class="sym">IC_DSGN</span> <span class="up">▲0.8</span></span>
+      <span><span class="sym">FPGA</span> <span class="up">▲1.4</span></span>
+      <span><span class="sym">AVIONICS</span> <span class="up">▲0.6</span></span>
+      <span><span class="sym">SIEMENS</span> 2024 INTERN</span>
+      <span><span class="sym">UIUC</span> EE_2027</span>
+      <span><span class="sym">PWR_ELEC</span> <span class="up">▲2.3</span></span>
+      <span><span class="sym">IC_DSGN</span> <span class="up">▲0.8</span></span>
+      <span><span class="sym">FPGA</span> <span class="up">▲1.4</span></span>
+      <span><span class="sym">AVIONICS</span> <span class="up">▲0.6</span></span>
+      <span><span class="sym">SIEMENS</span> 2024 INTERN</span>
+      <span><span class="sym">UIUC</span> EE_2027</span>
     </div>
-  </header>
-
-  <section>
-    <h2>Experience</h2>
-    <div class="entry">
-      <div class="entry-head">
-        <div class="entry-title">Test Engineering Intern — Siemens</div>
-        <div class="entry-meta">2024</div>
+  </div>
+ 
+  <nav class="fkeys">
+    <a href="#experience"><span class="fn">F1</span>EXPERIENCE</a>
+    <a href="#projects"><span class="fn">F2</span>PROJECTS</a>
+    <a href="mailto:rkomati787@gmail.com"><span class="fn">F3</span>CONTACT</a>
+    <a href="https://drive.google.com/file/d/1GWzSEB1Ap4nKtvgHGpr4PrKQxXmlzJPv/view?usp=sharing"><span class="fn">F4</span>RESUME</a>
+  </nav>
+ 
+  <div class="wrap">
+ 
+    <header class="intro">
+      <div class="id-row">
+        <h1>Rohith Komati<span class="cursor" aria-hidden="true"></span></h1>
+        <span class="ric">ROHK:UIUC</span>
       </div>
-      <p>Worked on hardware test and validation, building and debugging test procedures for production-line equipment. First real exposure to how power hardware is qualified before it ships.</p>
-      <div class="tags"><span>hardware test</span><span>validation</span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Projects</h2>
-
-    <div class="entry">
-      <div class="entry-head">
-        <div class="entry-title"><a href="https://github.com/twonkista/Discrete_Linear_Regulator_Circuit">Wireless Mechanical Macropad</a></div>
-        <div class="entry-meta">2026</div>
+      <p class="role">EE 4th year @ UIUC. Areas of interest: <strong>ic design</strong>, FPGAs, and avionics.</p>
+      <div class="links">
+        <a href="mailto:rkomati787@gmail.com">email</a>
+        <a href="https://github.com/twonkista">github</a>
+        <a href="https://www.linkedin.com/in/rohith-k-b24104284/">linkedin</a>
+        <a href="https://drive.google.com/file/d/1H4n6DSSqSTLIV9pxlhuSjWBAK-z6qPX9/view?usp=sharing">resume</a>
       </div>
-      <span class="status">in progress</span>
-      <p>A BLE HID macropad built around an ESP32 on a breadboard. Power stage is a discrete TL431-based linear regulator I designed and simulated from scratch — bandgap reference, feedback divider, BJT pass transistor. Doing this to beat some demon levels in Geometry Dash</p>
-      <p>Update: Power stage is finished</p>
-      <div class="tags"><span>ESP32</span><span>BLE HID</span><span>TLV431 LDO</span><span>LTspice</span><span>KiCad</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head">
-        <div class="entry-title"><a href="https://github.com/twonkista/FPGA-Audio-Sampler-with-Real-Time-DSP">FPGA Audio Sampler</a></div>
-        <div class="entry-meta">2025</div>
+    </header>
+ 
+    <section id="experience">
+      <h2>EXPERIENCE</h2>
+      <div class="col-hint"><span>ROLE / ORG</span><span>PERIOD</span></div>
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Test Engineering Intern — Siemens</div>
+          <div class="entry-meta">2024</div>
+        </div>
+        <p>Worked on hardware test and validation, building and debugging test procedures for production-line equipment. First real exposure to how power hardware is qualified before it ships.</p>
+        <div class="tags"><span>hardware test</span><span>validation</span></div>
       </div>
-      <p>An FPGA-based I2S audio sampler with real-time DSP — a broke man's Akai MPC 3000. Written in SystemVerilog, handling audio I/O and signal processing directly in hardware.</p>
-      <div class="tags"><span>SystemVerilog</span><span>I2S</span><span>DSP</span></div>
-    </div>
-  </section>
-
-  <footer>
-    Chicago IL, Buffalo Grove IL, Long Grove IL, Champaign IL, Earth atp
-  </footer>
-
-</div>
+    </section>
+ 
+    <section id="projects">
+      <h2>PROJECTS</h2>
+      <div class="col-hint"><span>NAME / DESC</span><span>PERIOD</span></div>
+ 
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title"><a href="https://github.com/twonkista/Discrete_Linear_Regulator_Circuit">Wireless Mechanical Macropad</a></div>
+          <div class="entry-meta">2026</div>
+        </div>
+        <span class="status">IN PROGRESS</span>
+        <p>A BLE HID macropad built around an ESP32 on a breadboard. Power stage is a discrete TL431-based linear regulator I designed and simulated from scratch — bandgap reference, feedback divider, BJT pass transistor. Doing this to beat some demon levels in Geometry Dash.</p>
+        <p>Update: power stage is finished.</p>
+        <div class="tags"><span>ESP32</span><span>BLE HID</span><span>TLV431 LDO</span><span>LTspice</span><span>KiCad</span></div>
+      </div>
+ 
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title"><a href="https://github.com/twonkista/FPGA-Audio-Sampler-with-Real-Time-DSP">FPGA Audio Sampler</a></div>
+          <div class="entry-meta">2025</div>
+        </div>
+        <span class="status done">COMPLETE</span>
+        <p>An FPGA-based I2S audio sampler with real-time DSP — a broke man's Akai MPC 3000. Written in SystemVerilog, handling audio I/O and signal processing directly in hardware.</p>
+        <div class="tags"><span>SystemVerilog</span><span>I2S</span><span>DSP</span></div>
+      </div>
+    </section>
+ 
+    <footer>
+      <span class="loc-line">Chicago IL / Buffalo Grove IL / Long Grove IL / Champaign IL / Earth atp</span>
+      <span>F5 REFRESH</span>
+    </footer>
+ 
+  </div>
 </body>
 </html>
+ 
